@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/src/server.js",
-    "build": "npx prisma migrate dev && npx tsc --outDir dist"
+    "build": "npx prisma generate && npx prisma migrate deploy && tsc"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "cors": "^2.8.5"
   }
 }

@@ -1,5 +1,9 @@
 import * as kindRepository from '../repositories/kindRepository.js'
 
+export async function initializeKinds() {
+    return await kindRepository.createMany();
+}
+
 export async function findMany() {
     return await kindRepository.findMany();
 }
