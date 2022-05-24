@@ -1,5 +1,6 @@
 import { prisma } from "../database.js";
 
+
 export async function createMany() {
     await prisma.kind.createMany({
         data: [
