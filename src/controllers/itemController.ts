@@ -2,6 +2,11 @@ import { Request, Response } from 'express';
 
 import * as itemService from '../services/itemService.js';
 
+export async function initializeItems(req: Request, res: Response) {
+  await itemService.initializeItems();
+  res.sendStatus(201)
+}
+
 export async function create(req: Request, res: Response) {
   const { name } = req.body;
   const { description } = req.body;

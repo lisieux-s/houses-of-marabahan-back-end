@@ -4,14 +4,14 @@ import { CreateItemData } from '../services/itemService.js';
 
 export async function deleteMany() {
   await prisma.houseItem.deleteMany({});
-  await prisma.characterItem.deleteMany({})
-  await prisma.item.deleteMany({})
+  await prisma.characterItem.deleteMany({});
+  await prisma.item.deleteMany({});
 }
 
 export async function createMany(createItemsData: CreateItemData[]) {
   await prisma.item.createMany({
-    data: createItemsData
-  })
+    data: createItemsData,
+  });
 }
 
 export async function create(createItemData: CreateItemData) {
@@ -59,9 +59,11 @@ export async function findByName(name: string) {
 export async function findById(id: number) {
   return await prisma.item.findUnique({
     where: { id },
-    include: { category: {
-      select: { name: true }
-    } }
+    include: {
+      category: {
+        select: { name: true },
+      },
+    },
   });
 }
 
@@ -79,24 +81,24 @@ export async function findInStorage(itemId: number, houseId: number) {
     where: {
       itemId,
       houseId,
-          }
-  })
+    },
+  });
 }
 
 export async function removeFromStorage(itemId: number, houseId: number) {
-  const houseItem = await findInStorage(itemId, houseId)
+  const houseItem = await findInStorage(itemId, houseId);
   await prisma.houseItem.delete({
     where: {
-      id: houseItem.id
-    }
-  })
+      id: houseItem.id,
+    },
+  });
 }
 
 export async function addToInventory(itemId: number, characterId: number) {
   await prisma.characterItem.create({
     data: {
       itemId,
-      characterId
-    }
-  })
+      characterId,
+    },
+  });
 }

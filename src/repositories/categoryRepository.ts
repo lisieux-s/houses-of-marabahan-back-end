@@ -3,8 +3,9 @@ import { prisma } from '../database.js';
 import { CategoryData } from '../services/categoryService.js';
 
 export async function deleteMany() {
-  await prisma.category.deleteMany({});
+  await prisma.$executeRaw`TRUNCATE TABLE categories CASCADE`
 }
+
 
 export async function createMany(categoryData: CategoryData[]) {
   await prisma.category.createMany({ data: categoryData });
