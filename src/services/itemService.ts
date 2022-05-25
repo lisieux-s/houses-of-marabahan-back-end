@@ -3,6 +3,27 @@ import * as itemRepository from '../repositories/itemRepository.js';
 
 export type CreateItemData = Omit<Item, 'id'>;
 
+export async function initializeItems() {
+  await itemRepository.deleteMany();
+  await itemRepository.createMany([
+    {
+      name: 'starter shovel',
+      categoryId: 1,
+      description: 'What oddities will you dig up?',
+    },
+    {
+      name: 'starter sword',
+      categoryId: 2,
+      description: `Careful, it's sharp!`,
+    },
+    {
+      name: 'starter knitting kit',
+      categoryId: 3,
+      description: 'This yarn is so soft...',
+    },
+  ]);
+}
+
 export async function create(createItemData: CreateItemData) {
   return await itemRepository.create(createItemData);
 }
@@ -11,11 +32,11 @@ export async function update(
   id: number,
   name?: string,
   categoryId?: number,
-  description?: string,
+  description?: string
 ) {
   await itemRepository.findById(id);
   if (name) await itemRepository.updateName(id, name);
-  if(categoryId) await itemRepository.updateCategoryId(id, categoryId)
+  if (categoryId) await itemRepository.updateCategoryId(id, categoryId);
   if (description) await itemRepository.updateDescription(id, description);
 }
 
@@ -39,9 +60,13 @@ export async function addToStorage(itemId: number, houseId: number) {
   await itemRepository.addToStorage(itemId, houseId);
 }
 
-export async function moveToInventory(itemId: number, houseId: number, characterId: number) {
-  if(!await itemRepository.findInStorage(itemId, houseId)) {
-    throw { type: 'NOT_FOUND', message: 'This item is not in this storage'}
+export async function moveToInventory(
+  itemId: number,
+  houseId: number,
+  characterId: number
+) {
+  if (!(await itemRepository.findInStorage(itemId, houseId))) {
+    throw { type: 'NOT_FOUND', message: 'This item is not in this storage' };
   }
   await itemRepository.removeFromStorage(itemId, houseId);
   await itemRepository.addToInventory(itemId, characterId);

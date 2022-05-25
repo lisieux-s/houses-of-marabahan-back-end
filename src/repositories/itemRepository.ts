@@ -2,6 +2,18 @@ import { prisma } from '../database.js';
 
 import { CreateItemData } from '../services/itemService.js';
 
+export async function deleteMany() {
+  await prisma.houseItem.deleteMany({});
+  await prisma.characterItem.deleteMany({})
+  await prisma.item.deleteMany({})
+}
+
+export async function createMany(createItemsData: CreateItemData[]) {
+  await prisma.item.createMany({
+    data: createItemsData
+  })
+}
+
 export async function create(createItemData: CreateItemData) {
   await prisma.item.create({
     data: {

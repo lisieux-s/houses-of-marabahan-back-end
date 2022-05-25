@@ -9,6 +9,8 @@ import * as itemController from '../controllers/itemController.js'
 const creatorRouter = Router();
 //K I N D S
 creatorRouter.post('/initialize-kinds', kindController.initializeKinds)
+creatorRouter.post('/initialize-categories', categoryController.initializeCategories)
+
 
 //C A T E G O R I E S
 creatorRouter.get('/categories', categoryController.getAll)
