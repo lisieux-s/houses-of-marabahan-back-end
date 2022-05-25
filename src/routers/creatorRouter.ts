@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 
-import * as kindController from '../controllers/kindController'
+import * as kindController from '../controllers/kindController.js'
 import * as categoryController from '../controllers/categoryController.js'
 import * as itemController from '../controllers/itemController.js'
 
