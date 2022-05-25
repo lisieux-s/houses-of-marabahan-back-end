@@ -8,17 +8,17 @@ export async function initializeItems() {
   await itemRepository.createMany([
     {
       name: 'starter shovel',
-      categoryId: 21,
+      categoryId: 1,
       description: 'What oddities will you dig up?',
     },
     {
       name: 'starter sword',
-      categoryId: 22,
+      categoryId: 2,
       description: `Careful, it's sharp!`,
     },
     {
       name: 'starter knitting kit',
-      categoryId: 23,
+      categoryId: 3,
       description: 'This yarn is so soft...',
     },
   ]);
