@@ -2,6 +2,8 @@ import { prisma } from "../database.js";
 
 
 export async function createMany() {
+  await prisma.character.deleteMany({})
+    await prisma.kind.deleteMany({});
     await prisma.kind.createMany({
         data: [
           {
