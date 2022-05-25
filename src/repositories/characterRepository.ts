@@ -14,6 +14,9 @@ export async function findCharacterByName(characterData: CharacterData) {
       name: characterData.name,
       houseId: characterData.houseId,
     },
+    include: { kind: {
+      select: { name: true }
+    } }
   });
 }
 
