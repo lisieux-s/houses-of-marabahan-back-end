@@ -14,15 +14,14 @@ export async function findCharacterByName(characterData: CharacterData) {
       name: characterData.name,
       houseId: characterData.houseId,
     },
-    include: { kind: {
-      select: { name: true }
-    } }
+    include: { kind: true }
   });
 }
 
 export async function findCharacterById(id: number) {
   return await prisma.character.findUnique({
     where: { id },
+    include: { kind: true },
   });
 }
 
