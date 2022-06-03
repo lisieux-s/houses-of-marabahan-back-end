@@ -38,7 +38,7 @@ export async function signUp(createHouseData: HouseData, item: string) {
     case 'sword':
       return await itemRepository.addToStorage(2, house.id);
     case 'knitting kit':
-      return itemRepository.addToStorage(3, house.id);
+      return await itemRepository.addToStorage(3, house.id);
   }
 }
 

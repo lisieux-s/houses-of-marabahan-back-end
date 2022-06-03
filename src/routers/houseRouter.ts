@@ -8,5 +8,5 @@ houseRouter.get('/house/:name', houseController.checkNameAvailability)
 houseRouter.post('/sign-up', houseController.createHouse);
 houseRouter.post('/sign-in', houseController.signIn)
 
-houseRouter.get('/house/:id/storage', houseController.getStorage, ensureAuthMiddleware)
+houseRouter.get('/house/:id/storage', ensureAuthMiddleware, houseController.getStorage)
 export default houseRouter;

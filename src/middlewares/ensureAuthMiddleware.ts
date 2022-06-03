@@ -22,6 +22,7 @@ export async function ensureAuthMiddleware(
       houseId: number;
     };
     const house = await houseService.findById(houseId);
+    console.log(house)
     res.locals.house = house;
 
     next();
