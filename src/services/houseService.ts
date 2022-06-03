@@ -34,11 +34,11 @@ export async function signUp(createHouseData: HouseData, item: string) {
   const house = await houseRepository.findByName(createHouseData.name);
   switch (item) {
     case 'shovel':
-      await itemRepository.addToStorage(1, house.id);
+      return await itemRepository.addToStorage(1, house.id);
     case 'sword':
-      await itemRepository.addToStorage(2, house.id);
+      return await itemRepository.addToStorage(2, house.id);
     case 'knitting kit':
-      await itemRepository.addToStorage(3, house.id);
+      return itemRepository.addToStorage(3, house.id);
   }
 }
 
