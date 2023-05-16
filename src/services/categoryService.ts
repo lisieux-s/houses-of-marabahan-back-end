@@ -1,4 +1,4 @@
-import { Category, prisma } from '@prisma/client';
+import { Category } from '@prisma/client';
 
 import * as categoryRepository from '../repositories/categoryRepository.js';
 import * as itemRepository from '../repositories/itemRepository.js'
