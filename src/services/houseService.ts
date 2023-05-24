@@ -21,7 +21,7 @@ export async function findById(id: number) {
   return house;
 }
 
-export async function signUp(createHouseData: HouseData, item: string) {
+export async function signUp(createHouseData: HouseData, itemName: string) {
   if (await findByName(createHouseData.name)) {
     throw {
       type: 'CONFLICT',
@@ -32,14 +32,18 @@ export async function signUp(createHouseData: HouseData, item: string) {
   const passwordHash = bcrypt.hashSync(createHouseData.password, 8);
   await houseRepository.create({ ...createHouseData, password: passwordHash });
   const house = await houseRepository.findByName(createHouseData.name);
-  switch (item) {
-    case 'shovel':
-      return await itemRepository.addToStorage(1, house.id);
-    case 'sword':
-      return await itemRepository.addToStorage(2, house.id);
-    case 'knitting kit':
-      return await itemRepository.addToStorage(3, house.id);
-  }
+  const item = await itemRepository.findByName(itemName);
+
+  return await itemRepository.addToStorage(item.id, house.id);
+
+  // switch (item) {
+  //   case 'shovel':
+  //     return await itemRepository.addToStorage(1, house.id);
+  //   case 'sword':
+  //     return await itemRepository.addToStorage(2, house.id);
+  //   case 'knitting kit':
+  //     return await itemRepository.addToStorage(3, house.id);
+  // }
 }
 
 export async function signIn(signInData: HouseData) {
