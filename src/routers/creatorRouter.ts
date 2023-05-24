@@ -14,6 +14,7 @@ creatorRouter.post(
 );
 creatorRouter.post('/initialize-items', itemController.initializeItems);
 
+
 //C A T E G O R I E S
 creatorRouter.get('/categories', categoryController.getAll);
 creatorRouter.post('/categories/create', categoryController.create);
