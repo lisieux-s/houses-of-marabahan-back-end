@@ -1,24 +1,28 @@
 import { Item } from '@prisma/client';
 import * as itemRepository from '../repositories/itemRepository.js';
+import * as categoryRepository from '../repositories/categoryRepository.js'
 
 export type CreateItemData = Omit<Item, 'id'>;
 
 export async function initializeItems() {
   await itemRepository.deleteMany();
+  const shovelCategory = await categoryRepository.findByName('gardening');
+  const swordCategory = await categoryRepository.findByName('weapons');
+  const knittingKitCategory = await categoryRepository.findByName('crafts')
   await itemRepository.createMany([
     {
       name: 'starter shovel',
-      categoryId: 1,
+      categoryId: shovelCategory.id,
       description: 'What oddities will you dig up?',
     },
     {
       name: 'starter sword',
-      categoryId: 2,
+      categoryId: swordCategory.id,
       description: `Careful, it's sharp!`,
     },
     {
       name: 'starter knitting kit',
-      categoryId: 3,
+      categoryId: knittingKitCategory.id,
       description: 'This yarn is so soft...',
     },
   ]);

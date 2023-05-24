@@ -32,7 +32,7 @@ export async function signUp(createHouseData: HouseData, itemName: string) {
   const passwordHash = bcrypt.hashSync(createHouseData.password, 8);
   await houseRepository.create({ ...createHouseData, password: passwordHash });
   const house = await houseRepository.findByName(createHouseData.name);
-  const item = await itemRepository.findByName(itemName);
+  const item = await itemRepository.findByName('starter ' + itemName);
 
   return await itemRepository.addToStorage(item.id, house.id);
 
