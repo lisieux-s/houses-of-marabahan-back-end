@@ -35,15 +35,6 @@ export async function signUp(createHouseData: HouseData, itemName: string) {
   const item = await itemRepository.findByName('starter ' + itemName);
 
   return await itemRepository.addToStorage(item.id, house.id);
-
-  // switch (item) {
-  //   case 'shovel':
-  //     return await itemRepository.addToStorage(1, house.id);
-  //   case 'sword':
-  //     return await itemRepository.addToStorage(2, house.id);
-  //   case 'knitting kit':
-  //     return await itemRepository.addToStorage(3, house.id);
-  // }
 }
 
 export async function signIn(signInData: HouseData) {
